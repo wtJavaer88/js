@@ -1,0 +1,57 @@
+<!DOCTYPE HTML> 
+<html> 
+<head>  
+<meta charset="GBK" />
+<title>JS闭包</title> 
+<script type="text/javascript" src="jquery-1.10.2.js"></script>
+<script language="javascript" type="text/javascript"> 
+    
+	function f1(){
+
+　　　　var n=999;
+	　　nAdd=function(){n+=1}　　
+　　　　function f2(){
+　　　　　　alert(n);
+　　　　}
+
+　　　　return f2;
+
+　　}
+
+　　var name = "The Window";   
+　　var object = {  
+　　　　name : "My Object",  
+　　　　getNameFunc : function(){
+			alert(this.name);
+			alert("this"+this);
+　　　　　　return function(){
+			alert("this"+this);
+　　　　　　　　return this.name;  
+　　　　　};   
+　　　　}   
+};  
+alert(object.getNameFunc()()); 
+
+function f(x) { 
+  var g = function () { return x; }
+  return g;
+}
+var h = f(1);
+alert(h()); 
+
+function test(){
+　　var result=f1();
+
+　　result(); // 999
+
+　　nAdd();
+
+　　result(); // 1000
+}
+</script> 
+</head> 
+<body> 
+    <h1>学习js闭包</h1> 
+    <button onClick=test()>click me</button> 
+</body> 
+</html>

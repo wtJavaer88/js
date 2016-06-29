@@ -1,0 +1,58 @@
+<html>
+<body  onload="test()">
+<script type="text/javascript" src="json2.js"></script> 
+<a href="http://www.baidu.com">dddddddddddddddddd</a>
+<script>
+	  
+	var obj = new Final();
+	function Base(){
+		this.baseFunc = function(){
+			//print("base behavior");
+			alert("Base");
+		}
+	}
+	function Middle(){
+		this.middleFunc = function(){
+			//print("middle behavior");
+			alert("Middle");
+		 }
+	}
+	Middle.prototype = new Base();
+	function Final(){
+		this.age=100;
+		this.man=false;
+		this.jsondata;
+		this.finalFunc = function(){
+			//print("final behavior");
+			alert("Final");
+		}
+		this.setJson = function(jsontext){
+			//print("final behavior");
+			this.jsondata = JSON.parse(jsontext);
+		}
+	}
+	Final.prototype = new Middle();
+	function test(){
+		var jsontext = '[{"firstname":"Jesper","surname":"Aaberg","phone":"110"},{"firstname":"Jesper2","surname":"Aaberg2","phone":"111"}]';  
+		//var contact = JSON.parse(jsontext);  
+		//alert(contact.surname + ", " + contact.firstname + ", "+ contact.phone);
+		
+		alert("AAAAA");
+		
+		alert(""+obj.age);
+		//alert(""+obj.man);
+		//obj.baseFunc();
+		//obj.middleFunc();
+		//obj.finalFunc();
+		obj.setJson(jsontext);
+		var data=obj.jsondata;
+		alert(data);
+		for(var item in data)
+		{
+			alert(data[item].firstname);
+		}
+		document.write("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
+	}
+</script>
+</body>
+</html>
